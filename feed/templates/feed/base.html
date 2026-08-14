@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rathod Social Media App</title>
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="{% static 'manifest.json' %}">
+  <meta name="theme-color" content="#1877f2">
+</head>
+<body>
+
+  <!-- Your app HTML content -->
+
+  <!-- Register Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register("{% static 'sw.js' %}")
+          .then((reg) => console.log('SW Registered!', reg))
+          .catch((err) => console.log('SW Registration failed!', err));
+      });
+    }
+  </script>
+</body>
+</html>

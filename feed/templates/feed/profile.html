@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ profile_user.username }}'s Profile - Rathod Social</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .card { background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .profile-header { text-align: center; }
+        .avatar { width: 80px; height: 80px; background: #1877f2; color: white; font-size: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: bold; }
+        .author { font-weight: bold; }
+        .time { color: #65676b; font-size: 12px; }
+        .btn-back { display: inline-block; margin-bottom: 15px; color: #1877f2; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="btn-back">← Back to Feed</a>
+
+        <!-- Profile Header -->
+        <div class="card profile-header">
+            <div class="avatar">{{ profile_user.username|slice:":1"|upper }}</div>
+            <h2>{{ profile_user.username }}</h2>
+            <p style="color: #65676b;">Joined {{ profile_user.date_joined|date:"F Y" }}</p>
+            <p><strong>{{ user_posts.count }}</strong> Posts</p>
+        </div>
+
+        <h3>Posts by {{ profile_user.username }}</h3>
+
+        <!-- User Posts -->
+        {% for post in user_posts %}
+        <div class="card">
+            <div class="author">{{ post.author.username }}</div>
+            <div class="time">{{ post.created_at|timesince }} ago</div>
+            <p>{{ post.content }}</p>
+
+            {% if post.image %}
+                <img src="{{ post.image.url }}" style="max-width: 100%; border-radius: 6px;">
+            {% endif %}
+            <hr style="border: 0; border-top: 1px solid #e4e6eb;">
+            <span>👍 {{ post.total_likes }} Likes</span>
+        </div>
+        {% empty %}
+            <p>This user hasn't posted anything yet.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

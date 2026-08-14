@@ -1,0 +1,22 @@
+{
+  "short_name": "RathodApp",
+  "name": "Rathod Social Media App",
+  "description": "Rathod Social Media Application",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://via.placeholder.com/512",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#1877f2",
+  "display": "standalone",
+  "orientation": "portrait"
+}
